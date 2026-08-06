@@ -74,12 +74,8 @@ public class Assignment1Part2 extends SuperKarel {
 
     private void addToCounter() throws Exception {
         turnAround();
-        while (frontIsClear()) {
-            move();
-        }
-        turnRight();
-        move();
-        putBeeper();
+        moveUntilWall();
+        turnToCounterAndPutBeeper();
     }
 
     /*
@@ -104,9 +100,7 @@ public class Assignment1Part2 extends SuperKarel {
      */
     private void moveToStartFromEndOfRow() throws Exception {
         turnAround();
-        while (frontIsClear()) {
-            move();
-        }
+        moveUntilWall();
         turnAround();
     }
 
@@ -142,9 +136,7 @@ public class Assignment1Part2 extends SuperKarel {
             If not - moves to first beeper(from east side) and picks it
      */
     private void pickBeeperFromEnd() throws Exception {
-        while (frontIsClear()) {
-            move();
-        }
+        moveUntilWall();
         if (beepersPresent()) {
             pickBeeper();
         } else {
@@ -190,5 +182,11 @@ public class Assignment1Part2 extends SuperKarel {
         pickBeeperFromStart();
         moveToStartFromEndOfRow();
         pickFromCounter();
+    }
+
+    private void turnToCounterAndPutBeeper() throws Exception{
+        turnRight();
+        move();
+        putBeeper();
     }
 }

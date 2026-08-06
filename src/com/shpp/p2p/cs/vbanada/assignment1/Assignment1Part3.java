@@ -11,14 +11,9 @@ public class Assignment1Part3 extends SuperKarel {
     public void run() throws Exception {
         //Karel checks that he faces the East
         while (facingEast()) {
-            //непраний ряд
+            putBeeper();
             fillOddRowAndComeBack();
-            /*
-                Precondition: Karel came back from odd row
-                Result: One more check, is Karel has right clear to step on pair row
-             */
             if (rightIsClear()) {
-                //парний ряд
                 fillPairRowAndComeBack();
             }
         }
@@ -29,7 +24,7 @@ public class Assignment1Part3 extends SuperKarel {
         Result: Karel fills odd row through one
      */
     private void fillOddRowAndComeBack() throws Exception {
-        putBeeper();
+
         while (frontIsClear()) {
             move();
             if (frontIsClear()) {
@@ -37,22 +32,8 @@ public class Assignment1Part3 extends SuperKarel {
                 putBeeper();
             }
         }
-
-        /*
-            Precondition: Karel stands at the edge of the odd line
-            Result: Karel comes back to start. If next row exists - moves next
-         */
-        turnAround();
-        while (frontIsClear()) {
-            move();
-        }
-        if (rightIsClear()) {
-            turnRight();
-            move();
-            turnRight();
-        }
+        comeBackAndStepToNextRow();
     }
-
     /*
         Precondition: Karel already filled odd row(first row), moved to next(pair row if it exists)
         Result: Karel starts fill pair row thought one, to complete chess order
@@ -65,12 +46,14 @@ public class Assignment1Part3 extends SuperKarel {
                 move();
             }
         }
-        //Karel comes back to start of row, and checks for another row.
+        comeBackAndStepToNextRow();
+    }
+
+    private void comeBackAndStepToNextRow() throws Exception {
         turnAround();
         while (frontIsClear()) {
             move();
         }
-        // If next row exists - steps on next(odd) row.
         if (rightIsClear()) {
             turnRight();
             move();

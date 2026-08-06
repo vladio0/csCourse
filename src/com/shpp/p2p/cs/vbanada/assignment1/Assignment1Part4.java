@@ -6,18 +6,17 @@ public class Assignment1Part4 extends SuperKarel{
     /*
         Precondition: Karel stays at the start of reactor
         Result: Karel went through reactor and cleaned trash
+            to avoid problem with forgetting the last step
+                after cycle checking process one more time
+
      */
     @Override
     public void run() throws Exception {
-        /*
-            to avoid problem with forgetting the last step
-                after cycle checking process one more time
-         */
         while(frontIsClear()){
-            checkWallsAndClean();
+            checksWallsInReactor();
             move();
         }
-        checkWallsAndClean();
+        checksWallsInReactor();
 
     }
 /*
@@ -25,30 +24,24 @@ public class Assignment1Part4 extends SuperKarel{
     Result: Karel is between waste cells and cleans it, moves back to corridor and looks to the East
  */
     private void cleanUpAndDown() throws Exception{
-        //turn left, and clean upper cell at first
+        if(noBeepersPresent()){
             turnLeft();
             move();
-
             cleanCell();
-
-            //turn around - clean lower cell
-            turnAround();
-            move();
-            move();
-
+            turnAroundAndMoveToOppositeCell();
             cleanCell();
-
-            //comes back to corridor and looks to the East
-            turnAround();
-            move();
-            turnRight();
+            backToCorridor();
+        }
     }
+
+
 
     /*
         Precondition: Karel stays on trash
         Result: Karel picks up the trash
      */
     private void cleanCell() throws Exception{
+
         while(beepersPresent()){
             pickBeeper();
         }
@@ -58,9 +51,21 @@ public class Assignment1Part4 extends SuperKarel{
         Precondition: Karel steps in corridor
         Result: Karel skips walls and cleans cells
      */
-    private void checkWallsAndClean() throws Exception {
+    private void checksWallsInReactor() throws Exception {
         if(leftIsClear()){
             cleanUpAndDown();
         }
+    }
+
+    private void backToCorridor() throws Exception {
+        turnAround();
+        move();
+        turnRight();
+    }
+
+    private void turnAroundAndMoveToOppositeCell() throws Exception {
+        turnAround();
+        move();
+        move();
     }
 }

@@ -14,4 +14,10 @@ public class SuperKarel extends KarelTheRobot {
         turnLeft();
         turnLeft();
     }
+
+    public void moveUntilWall()throws Exception{
+        while (frontIsClear()) {
+            move();
+        }
+    }
 }

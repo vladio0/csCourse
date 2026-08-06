@@ -54,9 +54,7 @@ public class Assignment1Part1 extends SuperKarel {
      */
     private void moveBack() throws Exception {
         turnAround();
-        while (frontIsClear()) {
-            move();
-        }
+        moveUntilWall();
         turnLeft();
     }
 
