@@ -18,14 +18,16 @@ public class Assignment1Part2 extends SuperKarel {
         putFirstBeeperAndPutInCounter();
         //filling a row, and count beepers except last cell in South line
         //so counter will be smaller by 1
-        fillAllRowWithBeepersAndCount();
+        if(frontIsClear()){
+            fillAllRowWithBeepersAndCount();
 
-        //Karel picks first beeper from line
-        pickBeeperFromStart();
-        //and picks first from counter
-        pickFromCounter();
-        //then checks counter
-        pickOneFromLineAndOneFromCounter();
+            //Karel picks first beeper from line
+            pickBeeperFromStart();
+            //and picks first from counter
+            pickFromCounter();
+            //then checks counter
+            pickOneFromLineAndOneFromCounter();
+        }
     }
 
     /*
@@ -35,10 +37,12 @@ public class Assignment1Part2 extends SuperKarel {
      */
     private void putFirstBeeperAndPutInCounter() throws Exception {
         putBeeper();
-        turnLeft();
-        move();
-        putBeeper();
-        moveToStartFromCounter();
+        if(frontIsClear()){
+            turnLeft();
+            move();
+            putBeeper();
+            moveToStartFromCounter();
+        }
     }
 
     /*
