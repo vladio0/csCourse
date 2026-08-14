@@ -50,13 +50,6 @@ public class Assignment2Part5 extends WindowProgram {
     private void drawMatrix(double startX, double startY) {
         for (int i = 0; i < NUM_COLS; i++) {
             for (int j = 0; j < NUM_ROWS; j++) {
-                GRect rect = new GRect(
-                        i * (BOX_SIZE + BOX_SPACING),
-                        j * (BOX_SIZE + BOX_SPACING),
-                        BOX_SIZE,
-                        BOX_SIZE
-                );
-
                 double currentX = startX + i * (BOX_SIZE + BOX_SPACING);
                 double currentY = startY + j * (BOX_SIZE + BOX_SPACING);
 

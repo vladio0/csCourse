@@ -4,6 +4,7 @@ import acm.graphics.GObject;
 import acm.graphics.GOval;
 import acm.graphics.GRect;
 import com.shpp.cs.a.graphics.WindowProgram;
+
 import java.awt.*;
 
 /*
@@ -28,13 +29,14 @@ public class Assignment2Part2 extends WindowProgram {
         drawFourCircles();
         drawRectangle();
     }
+
     /*
         Drawing rectangle and placing it each corner in the middle of each oval center
      */
     private void drawRectangle() {
         GRect rect = new GRect(
                 (double) DIAMETER / 2,
-                (double)DIAMETER / 2,
+                (double) DIAMETER / 2,
                 getWidth() - DIAMETER,
                 getHeight() - DIAMETER
         );
@@ -47,8 +49,8 @@ public class Assignment2Part2 extends WindowProgram {
         Locating each element in corner of window application
      */
     private void drawFourCircles() {
-        for(int i = 0; i < CIRCLES_COUNT_IN_COL; i++){
-            for(int j = 0; j < CIRCLES_COUNT_IN_ROW; j++){
+        for (int i = 0; i < CIRCLES_COUNT_IN_COL; i++) {
+            for (int j = 0; j < CIRCLES_COUNT_IN_ROW; j++) {
                 GOval circles = new GOval(
                         i * (getWidth() - DIAMETER),
                         j * (getHeight() - DIAMETER),

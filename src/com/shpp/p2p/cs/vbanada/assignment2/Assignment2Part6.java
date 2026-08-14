@@ -2,6 +2,7 @@ package com.shpp.p2p.cs.vbanada.assignment2;
 
 import acm.graphics.GOval;
 import com.shpp.cs.a.graphics.WindowProgram;
+
 import java.awt.*;
 
 /*
@@ -10,10 +11,12 @@ import java.awt.*;
 
 public class Assignment2Part6 extends WindowProgram {
     //Diameter of each part
-    public static final int DIAMETER = 100;
+    private static final int DIAMETER = 100;
     //Parts amount to easy change this value
-    public static final int PARTS_AMOUNT = 8;
+    private static final int PARTS_AMOUNT = 7;
 
+    private static final int X_COORDITANE_TO_MOVE = 70;
+    private static final int Y_COORDITANE_TO_MOVE = 50;
     /*
         Drawing each part of caterpillar
 
@@ -21,27 +24,31 @@ public class Assignment2Part6 extends WindowProgram {
         and for odd parts with cycles
      */
     @Override
-    public void run(){
+    public void run() {
+        drawCaterpillar();
+    }
 
-        for(int i = 0; i < PARTS_AMOUNT; i++){
-            if(i % 2 == 0) {
+    private void drawCaterpillar() {
+        for (int i = 0; i < PARTS_AMOUNT; i++) {
+            if (i % 2 == 0) {
                 GOval pair = new GOval(
-                        i * 70,
-                        50,
+                        i * X_COORDITANE_TO_MOVE,
+                        Y_COORDITANE_TO_MOVE,
                         DIAMETER,
                         DIAMETER);
                 fillOvalAndAdd(pair);
             }
-            if(i % 2 == 1) {
+            else{
                 GOval odd = new GOval(
-                        i * 70,
+                        i * X_COORDITANE_TO_MOVE,
                         0,
                         DIAMETER,
                         DIAMETER);
                 fillOvalAndAdd(odd);
             }
         }
-}
+    }
+
     /*
         Paint over parts of caterpillar
      */
