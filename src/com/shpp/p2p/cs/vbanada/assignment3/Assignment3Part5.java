@@ -11,6 +11,10 @@ public class Assignment3Part5 extends TextProgram {
     private static final int TARGET_BANK = 20;
     /* Random generator instance for simulating coin flips */
     private final RandomGenerator coinFlip = RandomGenerator.getInstance();
+    //creating constants for Strings
+    private static final String COUNT_GAMES = "It took %d games to earn $";
+    private static final String SUM_ON_TABLE = "This game, you earned $ %d";
+    private static final String LUCKY_BANK = "Your total is $ %d";
     /*
             Creating counters to count amount of money on table, how much money Lucky has;
             Counting games and playing casino
@@ -19,7 +23,7 @@ public class Assignment3Part5 extends TextProgram {
     @Override
     public void run() {
         int countGames = game();
-        println("It took " + countGames + " games to earn $" + TARGET_BANK);
+        println(String.format(COUNT_GAMES, countGames) + TARGET_BANK);
     }
 
     /*
@@ -41,8 +45,8 @@ public class Assignment3Part5 extends TextProgram {
             }
             luckyBank += sumOnTable;
             countGames++;
-            println("This game, you earned $" + sumOnTable);
-            println("Your total is $" + luckyBank);
+            println(String.format(SUM_ON_TABLE, sumOnTable));
+            println(String.format(LUCKY_BANK, luckyBank));
 
         }
         return countGames;

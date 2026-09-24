@@ -7,7 +7,12 @@ import com.shpp.cs.a.console.TextProgram;
  */
 
 public class Assignment3Part2 extends TextProgram {
-
+    //creating constants for Strings
+    private static final String ENTER_NUMBER = "Enter a number: ";
+    private static final String GREATER_ZERO = "Number must be greater than 0";
+    private static final String RESULT = "Result is 1 - the end";
+    private static final String EVEN = "%d is even so I take half: ";
+    private static final String ODD = "%d is odd so I make 3n + 1: ";
     /*
         1.Entering number
         2.Checking is number is greater than 0
@@ -15,12 +20,13 @@ public class Assignment3Part2 extends TextProgram {
      */
     @Override
     public void run() {
-        int n = readInt("Enter a number: ");
+        int n = readInt(String.format(ENTER_NUMBER));
         if (n < 0) {
-            println("Number must be greater than 0");
-        } else {
+            println(String.format(GREATER_ZERO));
+        }
+        else {
             hailLaunch(n);
-            print("Result is 1 - the end");
+            print(String.format(RESULT));
         }
     }
 
@@ -31,16 +37,16 @@ public class Assignment3Part2 extends TextProgram {
         making that until number don`t equals 1
      */
     private void hailLaunch(int n) {
-        while (n != 1) {
+        do {
             if (n % 2 == 0) {
-                print(n + " is even so I take half: ");
+                print(String.format(EVEN, n));
                 n /= 2;
                 println(n);
             } else {
-                print(n + " is odd so I make 3n + 1: ");
+                print(String.format(ODD, n));
                 n = (3 * n) + 1;
                 println(n);
             }
-        }
+        } while (n != 1);
     }
 }

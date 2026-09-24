@@ -17,7 +17,15 @@ public class Assignment3Part1 extends TextProgram {
     private static final int MINS_FOR_BLOOD_PRESSURE = 40;
     //days per week need to exercise to keep a low blood pressure
     private static final int DAYS_FOR_PRESSURE = 3;
-
+    //creating constants for Strings
+    private static final String MINUTES = "How many minutes did you do on day %d ? ";
+    private static final String MINUTES_GREATER = "Minutes must be greater than 0";
+    private static final String CARDIO_HEALTH = "\nCardiovascular health:";
+    private static final String BLOOD_PRESSURE = "Blood pressure:";
+    private static final String CARDIO_HEALTH_CONCLUSION_TRUE = "   Great job! You've done enough exercise for cardiovascular health.";
+    private static final String CARDIO_HEALTH_CONCLUSION_FALSE = "   You needed to train hard for at least %d more day(s) a week!";
+    private static final String BLOOD_PRESSURE_CONCLUSION_TRUE = "   Great job! You've done enough exercise to keep a low blood pressure.";
+    private static final String BLOOD_PRESSURE_CONCLUSION_FALSE = "   You needed to train hard for at least %d more day(s) a week!";
     /*
         1.Creating counters that count actual days of training
         2.Crating loop to enter minutes of training per day
@@ -29,23 +37,21 @@ public class Assignment3Part1 extends TextProgram {
         int countCardioDays = 0;
         int countPressureDays = 0;
         for (int i = 1; i <= DAYS; i++) {
-            int min = readInt("How many minutes did you do on day " + i + "? ");
-            if(min < 0){
-                println("Minutes must be greater than 0");
+            int minutes = readInt(String.format(MINUTES, i));
+            if (minutes < 0) {
+                println(String.format(MINUTES_GREATER));
                 return;
             }
-            else{
-                if (min >= MINS_FOR_CARDIOVASCULAR) {
-                    countCardioDays++;
-                }
-                if (min >= MINS_FOR_BLOOD_PRESSURE) {
-                    countPressureDays++;
-                }
+            if (minutes >= MINS_FOR_CARDIOVASCULAR) {
+                countCardioDays++;
+            }
+            if (minutes >= MINS_FOR_BLOOD_PRESSURE) {
+                countPressureDays++;
             }
         }
-        println("Cardiovascular health:");
+        println(String.format(CARDIO_HEALTH));
         cardiovascularChecker(countCardioDays);
-        println("Blood pressure:");
+        println(String.format(BLOOD_PRESSURE));
         bloodPressureChecker(countPressureDays);
     }
 
@@ -54,9 +60,9 @@ public class Assignment3Part1 extends TextProgram {
      */
     private void cardiovascularChecker(int count) {
         if (count >= DAYS_FOR_CARDIOVASCULAR) {
-            println("Great job! You've done enough exercise for cardiovascular health.");
+            println(String.format(CARDIO_HEALTH_CONCLUSION_TRUE));
         } else {
-            println("You needed to train hard for at least " + (DAYS_FOR_CARDIOVASCULAR - count) + " more day(s) a week!");
+            println(String.format(CARDIO_HEALTH_CONCLUSION_FALSE, DAYS_FOR_CARDIOVASCULAR - count ));
         }
     }
 
@@ -65,9 +71,9 @@ public class Assignment3Part1 extends TextProgram {
      */
     private void bloodPressureChecker(int count) {
         if (count >= DAYS_FOR_PRESSURE) {
-            println("Great job! You've done enough exercise to keep a low blood pressure.");
+            println(String.format(BLOOD_PRESSURE_CONCLUSION_TRUE));
         } else {
-            println("You needed to train hard for at least " + (DAYS_FOR_PRESSURE - count) + " more day(s) a week!");
+            println(String.format(BLOOD_PRESSURE_CONCLUSION_FALSE, DAYS_FOR_PRESSURE - count));
         }
     }
 }
